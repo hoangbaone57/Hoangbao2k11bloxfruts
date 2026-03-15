@@ -1,0 +1,75 @@
+-- Destroy UI cũ
+pcall(function()
+    if game.CoreGui:FindFirstChild("WindUI") then
+        game.CoreGui.WindUI:Destroy()
+    end
+end)
+
+-- Load WindUI
+local WindUI = loadstring(game:HttpGet(
+"https://raw.githubusercontent.com/teoscrvn/T-ng-h-p-/main/Script%20test%20(1).txt"
+))()
+
+if not WindUI then
+    warn("WindUI load failed")
+    return
+end
+
+-- Window
+local Window = WindUI:CreateWindow({
+    Title = "HGB vn Hub",
+    Size = UDim2.fromOffset(580,340),
+    Theme = "Dark",
+    Transparent = true
+})
+
+-- Open Button
+Window:EditOpenButton({
+    Title = "HGB vn Hub 🇻🇳",
+    Icon = "monitor",
+    CornerRadius = UDim.new(0,16),
+    StrokeThickness = 2,
+    Color = ColorSequence.new(
+        Color3.fromRGB(255,15,123),
+        Color3.fromRGB(248,155,41)
+    ),
+    Draggable = true
+})
+
+-- Tab
+local Tabs = {
+Home = Window:Tab({Title="🏠 Home"})
+}
+
+-- =====================
+-- HOME TAB
+-- =====================
+
+-- Quantum
+Tabs.Home:Button({
+Title="⚡ Quantum",
+Callback=function()
+loadstring(game:HttpGet(
+"https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"
+))()
+end
+})
+
+-- Xete V4
+Tabs.Home:Button({
+Title="🚀 Xete V4",
+Callback=function()
+getgenv().Version = "V4"
+getgenv().Team = "Marines"
+loadstring(game:HttpGet(
+"https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"
+))()
+end
+})
+
+-- Notify
+WindUI:Notify({
+Title="HGB vn Hub",
+Content="Script đã load thành công!",
+Duration=4
+})
