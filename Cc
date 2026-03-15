@@ -1,0 +1,29 @@
+-- Load UI Library
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxAvatar/UiLib/main/UiLibrary.lua"))()
+
+local Window = Library:CreateWindow("HGB vn Hub")
+
+-- Tab Blox Fruits
+local MainTab = Window:CreateTab("Main")
+
+-- Quantum
+MainTab:CreateButton({
+Name = "Quantum",
+Callback = function()
+loadstring(game:HttpGet(
+"https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"
+))()
+end
+})
+
+-- Xete V4
+MainTab:CreateButton({
+Name = "Xete V4",
+Callback = function()
+getgenv().Version = "V4"
+getgenv().Team = "Marines"
+loadstring(game:HttpGet(
+"https://raw.githubusercontent.com/TlDinhKhoi/Xeter/refs/heads/main/Main.lua"
+))()
+end
+})
