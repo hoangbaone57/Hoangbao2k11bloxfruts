@@ -30,7 +30,7 @@ end
 
 JoinTeam()
 
-hookfunction(require(game:GetService("ReplicatedStorage").Effect.C"Nhomner.Death), function()
+hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Death), function()
     -- empty block
 end)
 hookfunction(require(game:GetService("ReplicatedStorage").Effect.Container.Respawn), function()
@@ -3738,8 +3738,8 @@ function CheckItemBPCRBPCR(v463)
 end
 local vu32 = loadstring(game:HttpGet("https://raw.githubusercontent.com/PlockScripts/Library-ui/refs/heads/main/redz-V5-remake/main.luau"))()
 local v466 = vu32:MakeWindow({
-    Title = "redz hub : Blox Fruits",
-    SubTitle = "by:hbaocaythue",
+    Title = "redz hub [ BETA ACCESS ] : Blox Fruits",
+    SubTitle = "remake version",
     SaveFolder = "Redz | redz lib v5.lua"
 })
 
@@ -3762,10 +3762,10 @@ local v494 = v466:MakeTab({"Visual", "user"})
 local v495 = v466:MakeTab({"Shop", "shoppingCart"})
 local v496 = v466:MakeTab({"Misc", "settings"})
 v484:AddDiscordInvite({
-    Name = "hbaocaythue | Community",
+    Name = "DesplockHub | Community",
     Description = "Join server to receive Update",
-    Logo = "rbxassetid://99594842180132",
-    Invite = "https://discord.gg/pAxg3MRP"
+    Logo = "rbxassetid://131723242350068",
+    Invite = "https://discord.gg/BnEDf68jwx"
 })
 _G.SelectWeapon = "Melee"
 task.spawn(function()
