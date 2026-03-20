@@ -3738,8 +3738,8 @@ function CheckItemBPCRBPCR(v463)
 end
 local vu32 = loadstring(game:HttpGet("https://raw.githubusercontent.com/PlockScripts/Library-ui/refs/heads/main/redz-V5-remake/main.luau"))()
 local v466 = vu32:MakeWindow({
-    Title = "redz hub [ BETA ACCESS ] : Blox Fruits",
-    SubTitle = "remake version",
+    Title = "redz hub",
+    SubTitle = "by: hbaocaythue",
     SaveFolder = "Redz | redz lib v5.lua"
 })
 
@@ -3762,10 +3762,10 @@ local v494 = v466:MakeTab({"Visual", "user"})
 local v495 = v466:MakeTab({"Shop", "shoppingCart"})
 local v496 = v466:MakeTab({"Misc", "settings"})
 v484:AddDiscordInvite({
-    Name = "DesplockHub | Community",
+    Name = "hbaocaythue | Community",
     Description = "Join server to receive Update",
-    Logo = "rbxassetid://131723242350068",
-    Invite = "https://discord.gg/BnEDf68jwx"
+    Logo = "rbxassetid://99594842180132",
+    Invite = "https://discord.gg/pAxg3MRP"
 })
 _G.SelectWeapon = "Melee"
 task.spawn(function()
