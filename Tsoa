@@ -1,0 +1,76 @@
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+-- Xóa UI cũ nếu đã tồn tại để tránh bị chồng đè
+if PlayerGui:FindFirstChild("AutoResetGui_V3") then
+    PlayerGui.AutoResetGui_V3:Destroy()
+end
+
+-- 1. TẠO GIAO DIỆN
+local ScreenGui = Instance.new("ScreenGui")
+local ToggleButton = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+
+ScreenGui.Name = "AutoResetGui_V3"
+ScreenGui.Parent = PlayerGui
+ScreenGui.ResetOnSpawn = false
+ScreenGui.DisplayOrder = 999999 -- Ép lên lớp cao nhất có thể
+
+ToggleButton.Name = "ToggleButton"
+ToggleButton.Parent = ScreenGui
+ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 40, 40)
+ToggleButton.Position = UDim2.new(0.15, 0, 0.55, 0) -- Vị trí thoáng hơn một chút
+ToggleButton.Size = UDim2.new(0, 150, 0, 50)
+ToggleButton.Font = Enum.Font.GothamBold
+ToggleButton.Text = "RESET EGG: OFF"
+ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleButton.TextSize = 16
+ToggleButton.BorderSizePixel = 0
+ToggleButton.ZIndex = 10 -- Đảm bảo nút nằm trên cái khung của chính nó
+
+-- Quan trọng: Cho phép tương tác tối đa
+ToggleButton.Active = true
+ToggleButton.Selectable = true
+
+UICorner.CornerRadius = UDim.new(0, 10)
+UICorner.Parent = ToggleButton
+
+-- 2. LOGIC BẬT/TẮT
+_G.AutoResetOnEgg = false
+
+local function toggle()
+    _G.AutoResetOnEgg = not _G.AutoResetOnEgg
+    if _G.AutoResetOnEgg then
+        ToggleButton.Text = "RESET EGG: ON"
+        ToggleButton.BackgroundColor3 = Color3.fromRGB(40, 255, 40)
+        print("Auto Reset: ON")
+    else
+        ToggleButton.Text = "RESET EGG: OFF"
+        ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 40, 40)
+        print("Auto Reset: OFF")
+    end
+end
+
+-- Sử dụng sự kiện MouseButton1Click (thường nhạy nhất trên mọi thiết bị)
+ToggleButton.MouseButton1Click:Connect(toggle)
+
+-- 3. LOGIC QUÉT LỖI (Dùng vòng lặp kiểm tra để chắc chắn hơn)
+task.spawn(function()
+    while true do
+        if _G.AutoResetOnEgg then
+            -- Quét qua tất cả TextLabel có trong PlayerGui
+            for _, v in pairs(PlayerGui:GetDescendants()) do
+                if v:IsA("TextLabel") or v:IsA("TextButton") then
+                    if v.Visible and v.Text:lower():find("already holding that egg") then
+                        if Player.Character and Player.Character:FindFirstChild("Humanoid") then
+                            Player.Character.Humanoid.Health = 0
+                            task.wait(2) -- Đợi 2 giây sau khi reset để tránh reset liên tục
+                        end
+                    end
+                end
+            end
+        end
+        task.wait(0.5) -- Quét mỗi 0.5 giây để không làm lag máy
+    end
+end)
